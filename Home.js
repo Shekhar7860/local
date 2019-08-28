@@ -19,8 +19,8 @@ import {
   TouchableOpacity, Image,
   TouchableHighlight
 } from 'react-native';
-import Routes from './Routes.js'
 import { strings } from './i18n';
+import { Actions } from 'react-native-router-flux';
 import {
   Header,
   LearnMoreLinks,
@@ -29,7 +29,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-export default class App extends Component{
+export default class Home extends Component{
   state = {
       currentLanguage: 'en'
   };
@@ -39,13 +39,36 @@ export default class App extends Component{
       this.setState({ currentLanguage: language });
   };
 
+  goToList = () => {
+    Actions.list()
+  }
+
   render() {
       I18n.locale = this.state.currentLanguage;
       I18n.fallbacks = true;
     
 
       return (
-        <Routes />
+          <View style={styles.container}>
+          <View style={styles.toolbar}>
+                    <Text style={styles.toolbarButton}></Text>
+                    <Text style={styles.toolbarTitle}>{strings('login.home')}</Text>
+                    <TouchableOpacity style={styles.toolbarButton}onPress={() => this.share()}>
+                    <Image style={{width:30,marginLeft:5,  height:30}} source={require('./images/share.png')}></Image>
+                    </TouchableOpacity>
+                </View>
+              <Text style={{fontSize:20, margin:20}}>{strings('login.welcome')}
+              </Text>
+              <TouchableHighlight style={styles.fullWidthButton} onPress={() => this.goToList()}>
+            <Text style={styles.fullWidthButtonText}>{strings('login.started')}</Text>
+            </TouchableHighlight>
+            <TouchableHighlight style={styles.fullWidthButton} onPress={() => this._changeLanguage('en')}>
+            <Text style={styles.fullWidthButtonText}>{strings('login.eng')}</Text>
+            </TouchableHighlight>
+            <TouchableHighlight style={styles.fullWidthButton} onPress={() => this._changeLanguage('hi')}>
+            <Text style={styles.fullWidthButtonText}>{strings('login.hin')}</Text>
+            </TouchableHighlight>
+          </View>
       );
   }
 }

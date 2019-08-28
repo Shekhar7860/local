@@ -188,6 +188,8 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-sound-player')
+    implementation project(':react-native-play-audio')
     implementation project(':react-native-i18n')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules

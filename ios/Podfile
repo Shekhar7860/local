@@ -29,6 +29,10 @@ target 'i18ntest' do
 
   pod 'RNI18n', :path => '../node_modules/react-native-i18n'
 
+  pod 'RNPlayAudio', :path => '../node_modules/react-native-play-audio'
+
+  pod 'RNSoundPlayer', :path => '../node_modules/react-native-sound-player'
+
   target 'i18ntestTests' do
     inherit! :search_paths
     # Pods for testing
